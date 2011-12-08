@@ -189,6 +189,13 @@ class Client(object):
             return self[key]
         except KeyError:
             return default
+            
+    def expire(self, key, seconds):
+        """Set a key's time to live in seconds.
+        Returns: 1 if the timeout was set.
+                 0 if key does not exist or the timeout could not be set.
+        """
+        return self.api.expire(key, seconds)
 
     def __getitem__(self, name):
         """``x.__getitem__(name) <==> x[name]``"""
